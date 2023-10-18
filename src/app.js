@@ -2,33 +2,27 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-const json = {
-    "name": "Caleb Curry",
-    "industry": "Music",
-    "favoriteColors": [
-        "red",
-        "blue",
-        "green"
-    ],
-    "favoriteNumber": [
-        5,
-        3,
-        7
-    ],
-    "favoritePeople": [
-        {
-            name: "nom",
-            relationship: "parent"
-        },
-        {
-            name: "dad",
-            relationship: "parent"
-        }
-    ]
-}
+const customers = [
+    {
+        "name": "Caleb",
+        "industry": "music"
+    },
+    {
+        "name": "John",
+        "industry": "networking"
+    },
+    {
+        "name": "Sal",
+        "industry": "sports medecine"
+    },
+]
 
 app.get('/', (req, res) => {
-    res.send({"data": json.favoritePeople});
+    res.send("Welcome!");
+})
+
+app.get('/api/customers', (req, res) => {
+    res.send({"customers": customers});
 })
 
 app.post('/', (req, res) => {
