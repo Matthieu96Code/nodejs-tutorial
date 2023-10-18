@@ -2,8 +2,33 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+const json = {
+    "name": "Caleb Curry",
+    "industry": "Music",
+    "favoriteColors": [
+        "red",
+        "blue",
+        "green"
+    ],
+    "favoriteNumber": [
+        5,
+        3,
+        7
+    ],
+    "favoritePeople": [
+        {
+            name: "nom",
+            relationship: "parent"
+        },
+        {
+            name: "dad",
+            relationship: "parent"
+        }
+    ]
+}
+
 app.get('/', (req, res) => {
-    res.send('hello word!');
+    res.send({"data": json.favoritePeople});
 })
 
 app.post('/', (req, res) => {
