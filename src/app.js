@@ -1,5 +1,7 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
+mongoose.set('strictQuery', false);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -38,7 +40,16 @@ app.post('/', (req, res) => {
     res.send('This is a post request!');
 })
 
+const start = async() => {
+    try {
+        await mongoose.connect('mongodb+srv://senoumatthieu96:matthstane@cluster0.7in6khd.mongodb.net/?retryWrites=true&w=majority');
+    
+        app.listen(PORT, () => {
+            console.log('App listening on port ' + PORT);
+        });
+    } catch(e) {
+        console.log(e.message)
+    }
+};
 
-app.listen(PORT, () => {
-    console.log('App listening on port ' + PORT);
-})
+start();
