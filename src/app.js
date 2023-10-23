@@ -60,9 +60,10 @@ app.get('/api/customers/:id/', async(req, res) => {
         console.log(customer);
         if (!customer) {
             res.status(400).json({error: 'User not found'});
+        } else {
+            res.json({customer});
         }
-        res.json({customer});
-    } catch {
+    } catch(e) {
         res.status(500).json({error: 'something went wrong'});
     }
 });
