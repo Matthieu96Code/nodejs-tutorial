@@ -53,7 +53,7 @@ app.get('/api/customers/:id/', async(req, res) => {
         requestParams: req.params,
         requestQuery: req.query
     });
-    try{
+    try {
         const {id: customerId} = req.params;
         console.log(customerId)
         const customer = await Customer.findById(customerId);
@@ -63,6 +63,17 @@ app.get('/api/customers/:id/', async(req, res) => {
         } else {
             res.json({customer});
         }
+    } catch(e) {
+        res.status(500).json({error: 'something went wrong'});
+    }
+});
+
+app.put('/api/customers/:id', async(req, res) => {
+    try {
+        const customerId = req.params.id;
+        const result = await Customer.replaceOne({_id: customerId}, req.body);
+        console.log(result);
+        res.json({updatedCount: result.modifiedCount}); 
     } catch(e) {
         res.status(500).json({error: 'something went wrong'});
     }
