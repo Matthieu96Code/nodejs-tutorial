@@ -80,6 +80,18 @@ app.put('/api/customers/:id', async(req, res) => {
     }
 });
 
+app.patch('/api/customers/:id', async(req, res) => {
+    try {
+        const customerId = req.params.id;
+        const customer = await Customer.findOneAndUpdate({_id: customerId}, req.body, {new: true});
+        console.log(customer);
+        res.json({customer});
+    } catch(e) {
+        console.log(e.message);
+        res.status(500).json({error: 'something went wrong'});
+    }
+});
+
 app.delete('/api/customers/:id', async(req, res) => {
     try {
         const customerId = req.params.id;
