@@ -1,5 +1,6 @@
+"use strict";
+//@ts-nocheck
 const mongoose = require('mongoose');
-
 const customerSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -13,5 +14,4 @@ const customerSchema = new mongoose.Schema({
         }
     ]
 });
-
 module.exports = mongoose.model('customer', customerSchema);
