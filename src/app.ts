@@ -1,7 +1,6 @@
-//@ts-nocheck
 const express = require('express');
 const mongoose = require('mongoose');
-const Customer = require('./models/customer');
+import Customer from "./models/customer";
 const cors = require('cors');
 
 const app = express();
