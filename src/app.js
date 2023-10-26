@@ -108,13 +108,27 @@ app.patch('/api/orders/:id', async(req, res) => {
         if(result){
             res.json(result);
         } else {
-            res.status(404).json({error: 'Something went wrong'});
+            res.status(404).json({error: 'Order not found'});
         }
     } catch (e) {
         console.log(e.message);
         res.status(500).json({error: 'something went wrong'});
     }
 });
+
+app.get('/api/orders/:id', async(req, res) => {
+    try {
+        const result = await Customer.findOne({'orders._id': req.params.id});
+        if(result){
+            res.json(result);
+        } else {
+            res.status(404).json({error: 'Order not found'});
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({error: 'something went wrong'});
+    }
+})
 
 app.delete('/api/customers/:id', async(req, res) => {
     try {
