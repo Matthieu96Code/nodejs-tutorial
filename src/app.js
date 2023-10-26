@@ -21,26 +21,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const PORT = process.env.PORT || 3000;
 const CONNECTION = process.env.CONNECTION;
-const customers = [
-    {
-        "name": "Caleb",
-        "industry": "music"
-    },
-    {
-        "name": "John",
-        "industry": "networking"
-    },
-    {
-        "name": "Sal",
-        "industry": "sports medecine"
-    },
-];
-const customer = new Customer({
-    name: 'john',
-    industry: 'marketing'
-});
 app.get('/', (req, res) => {
-    res.send("welcome!");
+    res.send("welcome!!");
 });
 app.get('/api/customers', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
