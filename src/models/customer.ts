@@ -1,6 +1,17 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, HydratedDocument } from 'mongoose';
 
-const customerSchema = new Schema({
+interface IOrder {
+    description: string,
+    amountInCents?: number
+};
+
+interface ICustomer {
+    name: string,
+    industry?: string,
+    orders?: IOrder[]
+}
+
+const customerSchema = new Schema<ICustomer>({
     name: {
         type: String,
         required: true
@@ -13,5 +24,14 @@ const customerSchema = new Schema({
         }
     ]
 });
+
 const Customer = model('customer', customerSchema);
+
+const c: HydratedDocument<ICustomer> = new Customer({
+    name: 'test',
+    industry: 'test'
+});
+
+// console.log(c.name);
+
 export default Customer;
