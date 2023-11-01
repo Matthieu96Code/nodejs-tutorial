@@ -129,6 +129,7 @@ app.delete('/api/customers/:id', (req, res) => __awaiter(void 0, void 0, void 0,
 }));
 app.post('/api/customers', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
+    // console.log(req.tacos);
     const customer = new customer_1.default(req.body);
     try {
         yield customer.save();
